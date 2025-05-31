@@ -1,764 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meghashyam Guduru | Junior Architect & Civil Engineer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(15, 23, 42, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: #3b82f6;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #3b82f6;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.8;
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            margin: 0 auto;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #666;
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .skill-category h3 {
-            color: #3b82f6;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: linear-gradient(45deg, #e0f2fe, #f0f9ff);
-            color: #0369a1;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid #bae6fd;
-        }
-
-        /* Experience Section */
-        .experience-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-            transition: all 0.3s ease;
-        }
-
-        .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .experience-title {
-            color: #1e293b;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .experience-company {
-            color: #3b82f6;
-            font-weight: 500;
-        }
-
-        .experience-date {
-            color: #666;
-            font-size: 0.9rem;
-            background: #f1f5f9;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-        }
-
-        .experience-description {
-            color: #666;
-            line-height: 1.7;
-        }
-
-        /* Projects Section */
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border-top: 4px solid #8b5cf6;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-title {
-            color: #1e293b;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .project-stats {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            background: linear-gradient(45deg, #f0fdf4, #ecfdf5);
-            color: #166534;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid #bbf7d0;
-        }
-
-        /* Education Section */
-        .education-timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .education-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
-        }
-
-        .education-item {
-            position: relative;
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-left: 1rem;
-        }
-
-        .education-item::before {
-            content: '';
-            position: absolute;
-            left: -1.75rem;
-            top: 1.5rem;
-            width: 12px;
-            height: 12px;
-            background: #3b82f6;
-            border-radius: 50%;
-            border: 3px solid white;
-        }
-
-        .education-degree {
-            color: #1e293b;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .education-school {
-            color: #3b82f6;
-            margin: 0.5rem 0;
-        }
-
-        .education-grade {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: #3b82f6;
-        }
-
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: #3b82f6;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .contact-info {
-                gap: 2rem;
-            }
-
-            .experience-header {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-                padding: 0 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civil Engineering Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+  <header>
+    <h1>Meghashyam Guduru</h1>
+    <p>Civil Engineer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+        <a href="c:\Users\PC\Downloads\Meghashyam_Resume.pdf.pdf" target="_blank" download>My Resume</a>
+      </section>
+      <a href="#contact">Contact</a>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Meghashyam Guduru</h1>
-            <p class="subtitle">Junior Architect | Civil Engineering</p>
-            <p class="description">
-                Civil Engineering graduate specializing in architectural design and construction documentation. 
-                Experienced in AutoCAD, Revit, and project execution with a passion for innovative architectural solutions.
-            </p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> Get In Touch
-                </a>
-                <a href="#about" class="btn btn-secondary">
-                    <i class="fas fa-user"></i> Learn More
-                </a>
-            </div>
-        </div>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I’m Meghashyam Guduru, a Civil Engineering student set to graduate in March 2025 from RGMCET. I'm passionate about creating smart, efficient solutions in the built environment and enjoy turning ideas into reality through teamwork and continuous learning.
+
+        I’m excited to begin my professional journey and contribute to meaningful projects in the civil engineering field.</p>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li>
+          <h3>Prediction of Seismic Damage for Low and Mid rise Building using Supervised Classification Machine
+            Learning Algorithm</h3>
+          <p> The project focuses on predicting seismic damage in low-and mid-rise buildings using supervised machine learning.
+            Ground motion data and structural analysis are combined through the INSPECT tool and Park-Ang model. Various
+            algorithms are tested, with Decision Tree performing best. The goal is to enhance earthquake preparedness and risk
+            mitigation.</p>
+        </li>
+        <li>
+          <h3>Urban Building Planings- AutoCAD</h3>
+          <p>This project aims to design a small-scale urban environment using AutoCAD. It includes planning residential, com
+            mercial and public spaces with proper road networks and utilities. The project enhances CAD proficiency while
+             Introducing core urban planning concepts like space management, zoning, and infrastructure development through
+             Detailed 2D and 3D drawings.</p>
+        </li>
+      </ul>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="fade-in">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="profile-image">
-                <i class="fas fa-user"></i>
-            </div>
-            <div class="about-text">
-                <p>I'm a passionate Civil Engineering graduate with specialized expertise in architectural design and construction documentation. My hands-on experience with AutoCAD and Revit, combined with a strong foundation in technical detailing and project coordination, positions me to contribute effectively to industrial, institutional, and commercial architecture projects.</p>
-                
-                <p>Currently based in Yerraguntla, Kadapa, AP, I'm ready for immediate relocation to Mumbai and eager to gain comprehensive field experience through site visits and studio-based learning. My goal is to bridge the gap between innovative design concepts and practical construction solutions.</p>
-                
-                <div style="margin-top: 2rem;">
-                    <strong>Location:</strong> Yerraguntla, Kadapa, AP, India<br>
-                    <strong>Availability:</strong> Ready for immediate relocation to Mumbai<br>
-                    <strong>Date of Birth:</strong> November 7, 2003
-                </div>
-            </div>
-        </div>
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>AutoCAD</li>
+        <li>Revit Architecture</li>
+        <li>Staad.Pro</li>
+        <li>GIS</li>
+        <li>Project Management</li>
+      </ul>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="fade-in">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-drafting-compass"></i> Design Software</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">AutoCAD</span>
-                    <span class="skill-tag">Revit Architecture</span>
-                    <span class="skill-tag">SketchUp</span>
-                    <span class="skill-tag">STAAD.Pro</span>
-                    <span class="skill-tag">QGIS</span>
-                </div>
-            </div>
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul>
+        <li>
+
+</a>
+<img src="front view P-1.JPG"  alt="Modern kitchen renovation" style="width: 300px;">
+<img src="Left view P-1.jpg"  alt="Modern kitchen renovation" style="width: 350px;">
+
+          <h3>Internship at Bhavanam's C2C</h3>
+          <p><li>Title:<a href="https://drive.google.com/file/d/1wXaMf0DwWDQazMre8Mz2dfoe6_I2Xgkp/view" target="_blank">AutoCAD and Revit Architectural</a></li></p>
+         
+          <p>Role: Intern – Civil Engineering (Design Tools)</p>
+          <p>Responsibilities: Completed an online internship focused on AutoCAD and Revit Architecture.</p>
+
+            <p> Gained hands-on experience in 2D drafting and 3D modeling.</p>
             
-            <div class="skill-category">
-                <h3><i class="fas fa-tools"></i> Technical Skills</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Working Drawings</span>
-                    <span class="skill-tag">Construction Documentation</span>
-                    <span class="skill-tag">3D Modeling</span>
-                    <span class="skill-tag">Material Specifications</span>
-                </div>
-            </div>
+              <p> Applied design concepts to create accurate and efficient architectural drawings.</p>
             
-            <div class="skill-category">
-                <h3><i class="fas fa-project-diagram"></i> Project Management</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Project Coordination</span>
-                    <span class="skill-tag">Client Communication</span>
-                    <span class="skill-tag">Technical Detailing</span>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <h3><i class="fas fa-users"></i> Professional Skills</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Team Collaboration</span>
-                    <span class="skill-tag">Problem-solving</span>
-                    <span class="skill-tag">Time Management</span>
-                    <span class="skill-tag">Adaptability</span>
-                    <span class="skill-tag">Site Experience</span>
-                </div>
-            </div>
-        </div>
+                <p> Demonstrated strong technical skills and consistent dedication.</p>
+        </li>
+        <li>
+          <h3>Files</h3>
+            <li>
+          <li><a href="HATCHING_WORK.pdf">Hatching</a></li>
+          <li><a href="GLAZED_DOOR.pdf">Glazed Door</a></li>
+          <li><a href="GLAZED_PANELLED_DOOR.pdf">Glazed Panneled Door</a></li>
+          <li><a href="GLAZED_WINDOW,pdf">Glazed Window</a></li>
+          <li><a href="PANELLED_WINDOW.pdf">Panneled Window</a></li>
+          <li><a href="PLAN-1.pdf">Plan-1</a></li>
+          <li><a href="PLAN-2.pdf">Plan-2</a></li>
+        </ul>
+        </li>
+      </ul>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="fade-in">
-        <h2 class="section-title">Experience</h2>
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <div class="experience-title">AutoCAD & Revit Architectural Intern</div>
-                    <div class="experience-company">Bhavanam's C2C</div>
-                </div>
-                <div class="experience-date">Dec 2024 - Mar 2025</div>
-            </div>
-            <div class="experience-description">
-                Executed working drawings and construction documentation using AutoCAD and Revit for residential and commercial projects. Collaborated with senior architects on technical detailing, material specifications, and construction documentation. Produced high-quality 3D models and renderings to present design concepts to clients. Actively participated in virtual design meetings and project coordination to ensure alignment with client goals and architectural standards. Gained comprehensive understanding of project execution processes from design development through construction documentation phases.
-            </div>
-        </div>
+    <section id="education">
+      <h2>Education</h2>
+      <ul>
+        <li>B.Tech in Civil Engineering - R.G.M. College Of Engineering And Technology</li>
+        <li>Diploma in Civil Engineering -  Sai Rajeswari Institute of Technology</li>
+        <li> 10thClass - Sai Siddhartha High School</li>
+      </ul>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="fade-in">
-        <h2 class="section-title">Featured Project</h2>
-        <div class="project-card">
-            <div class="project-title">Seismic Damage Prediction for Buildings Using ML Algorithm</div>
-            <div class="project-description">
-                Developed a comprehensive machine learning framework for predicting seismic damage in low-rise buildings. This project demonstrates the intersection of civil engineering expertise and modern data science techniques, showcasing analytical skills directly applicable to structural assessment in architectural projects.
-            </div>
-            <div class="project-stats">
-                <span class="stat-item">97% Accuracy</span>
-                <span class="stat-item">177 Earthquake Records</span>
-                <span class="stat-item">Machine Learning</span>
-                <span class="stat-item">Structural Analysis</span>
-            </div>
-        </div>
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <ul>
+        <li><a href="https://drive.google.com/file/d/1NiDOy79wgjHfcBpvMxZJu5m9jAIFuciX/view" target="_blank">SketchUp and Its Applications</a></li>
+        <li><a href="https://drive.google.com/file/d/1NTiPglleCcHQ9P2xXzHD-iOen7K14rPy/view" target="_blank">Architectural Modeling Using Revit</a></li>
+        <li><a href="https://drive.google.com/file/d/1-UmJ3oWR19xB7rV56tj81Um-ODqt0TgZ/view" target="_blank">Mapathon (GIS)</a></li>
+        <li><a href="https://drive.google.com/file/d/1OyBVo_-CDKQ5JaRV-rRAb-DF3xdixqyV/view" target="_blank">Primavera</a></li>
+      </ul>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="fade-in">
-        <h2 class="section-title">Education</h2>
-        <div class="education-timeline">
-            <div class="education-item">
-                <div class="education-degree">B.Tech in Civil Engineering</div>
-                <div class="education-school">R.G.M. College of Engineering And Technology</div>
-                <div class="education-grade">2022 - 2025 | 69.7%</div>
-            </div>
-            
-            <div class="education-item">
-                <div class="education-degree">Diploma in Civil Engineering</div>
-                <div class="education-school">Sai Rajeswari Institute of Technology</div>
-                <div class="education-grade">2019 - 2022 | 73.96%</div>
-            </div>
-            
-            <div class="education-item">
-                <div class="education-degree">10th Class</div>
-                <div class="education-school">Sai Siddhartha High School</div>
-                <div class="education-grade">2018 - 2019 | 83%</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 3rem;">
-            <h3 style="color: #3b82f6; margin-bottom: 1rem;">Certifications</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">SketchUp and Its Applications</span>
-                <span class="skill-tag">Architectural Modeling Using Revit</span>
-                <span class="skill-tag">Mapathon (GIS)</span>
-                <span class="skill-tag">Rural Water Resources Management (NPTEL)</span>
-                <span class="skill-tag">IOT - Internet of Things (NPTEL)</span>
-            </div>
-        </div>
+    <section id="contact">
+      <h2>Contact</h2>
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
     </section>
+  </main>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact fade-in">
-        <h2 class="section-title" style="color: white;">Get In Touch</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to collaborate on your next architectural project?</p>
-        
-        <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:meghashyamguduru@gmail.com">meghashyamguduru@gmail.com</a>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <a href="tel:+916305450254">+91 6305450254</a>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fab fa-linkedin"></i>
-                <a href="https://linkedin.com/in/meghashyam-guduru" target="_blank">LinkedIn Profile</a>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Yerraguntla, Kadapa, AP, India</span>
-            </div>
-        </div>
-        
-        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
-            <p style="opacity: 0.8;">Available for full-time positions • Ready for immediate relocation to Mumbai</p>
-            <p style="opacity: 0.6; margin-top: 0.5rem;">Last updated: May 31, 2025</p>
-        </div>
-    </section>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Add some interactive hover effects
-        document.querySelectorAll('.skill-category, .experience-item, .project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
+  <footer>
+    <p>&copy; 2025 Meghashyam Guduru. All rights reserved.</p>
+  </footer>
 </body>
 </html>
